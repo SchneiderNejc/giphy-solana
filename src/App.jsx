@@ -7,6 +7,7 @@ const TWITTER_HANDLE = '_buildspace';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
+
   return (
     <div className="App">
       <div className="container">
@@ -16,6 +17,7 @@ const App = () => {
             View your GIF collection in the metaverse ✨
           </p>
         </div>
+
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
           <a
