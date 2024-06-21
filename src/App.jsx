@@ -13,6 +13,7 @@ const TEST_GIFS = ['https://i.giphy.com/originals/xTiTnHgUYQY7lUv8Jg.gif',
 
 const App = () => {
   const [walletAddress, setWalletAddress] = useState(null)
+  const [inputValue, setInputValue] = useState('')
   const checkIfWalletIsConnected = async () => {
     try {
       const { solana } = window;
@@ -41,8 +42,18 @@ const App = () => {
       setWalletAddress(response.publicKey.toString());
     }
   };
-
-  const renderNotConnctedContainer = () => {
+  const sendGif = async () => {
+    if (inputValue.length > 0) {
+      console.log('Gif link:', inputValue)
+    } else {
+      console.log('Empty input. Try again.')
+    }
+  }
+  const onInputChange = event => {
+    const { value } = event.target;
+    setInputValue(value)
+  }
+  const renderNotConnectedContainer = () => {
     <button
       className="cta-button connect-wallet-button"
       onClick={connectWallet}>
@@ -54,8 +65,9 @@ const App = () => {
       <form
         onSubmit={event => {
           event.preventDefault()
+          sendGif()
         }}>
-        <input type="text" placeholder="Enter gif link!" />
+        <input type="text" placeholder="Enter gif link!" value={inputValue} onChange{onInputChange} />
         <button type="submit" className="cta-button submit-gif-button">Submit</button>
       </form>
       <div className='gif-grid'>
